@@ -1,7 +1,59 @@
 const router = require('express').Router();
+const { findUserByUsername, insertPrimaryUser, insertStageUser } = require('../../database/service/user.database.service')
+const { toHash } = require('../../utility/auth.utility')
 
 router.post('/api/auth/register', (request, response) => {
-	// TODO: response: insert temporary user (and creator) document, send authentication token
+	// Check if user exists in the database
+	const userExists = await findUserByUsername(request.body.profile.username);
+
+	// If user does not exist, continue
+	if (userExists == null) {
+		console.log('The user does not exist')
+
+		// Hash password 
+		let hashedPassword = toHash(request.body.account.password)
+		console.log('Hashed Password: ' + hashedPassword)
+
+		// Build staged user document
+		let user = {
+			account: {
+				email: request.body.account.email,
+				password: hashedPassword,
+				registerDate: new Date(),
+				status: 'invalidated'
+			},
+			profile: {
+				avatar: request.body.profile.avatar,
+				name: {
+					first: request.body.profile.name.first,
+					last: request.body.profile.name.last
+				},
+				username: request.body.profile.username
+			},
+			curation: {
+				category: [],
+				creator: [],
+				keyword: [],
+				podcast: []
+			}
+		}
+
+		// Insert user to database
+
+
+		// Build staged creator document if user is 
+		if (request.body.accreditation.orcid != null) {
+			let creator = {
+				// TO DO:
+			}
+		}
+
+		 
+		// TO DO:
+	} else {
+		// If user exists, then send response 	
+		response.status(406).json({ message: 'User already exists.' })
+	}
 });
 
 router.post('/api/auth/authenticate', (request, response) => {

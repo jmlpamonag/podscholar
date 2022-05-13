@@ -3,6 +3,7 @@ const databaseConfiguration = {
 
 	authenticationDatabase: 'authentication',
 	authenticationTokenCollection: 'token',
+	authenticationValidationCollection: 'validationToken',
 
 	primaryDatabase: 'primary',
 	primaryCategoryCollection: 'category',

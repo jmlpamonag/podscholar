@@ -8,4 +8,8 @@ function stage(collection) {
 	return get().db(configuration.stageDatabase).collection(collection);
 }
 
-module.exports = { primary, stage }
+function authentication(collection) {
+	return get().db(configuration.authenticationDatabase).collection(collection);
+}
+
+module.exports = { primary, stage, authentication}
