@@ -1,5 +1,14 @@
 const { configuration } = require('../database');
 const { primary, stage } = require('./connection.database.service');
+const { ObjectId } = require("mongodb");
+
+async function findPrimaryCreator(id) {
+	return await primary(configuration.primaryCreatorCollection).findOne({ _id: new ObjectId(id) });
+}
+
+async function findStageCreator(id) {
+	return await stage(configuration.stageCreatorCollection).findOne({ _id: new ObjectId(id) });
+}
 
 async function insertPrimaryCreator(creator) {
 	const result = await primary(configuration.primaryCreatorCollection).insertOne(creator);
@@ -31,4 +40,4 @@ async function insertStageCreator(creator) {
 	}
 }
 
-module.exports = { insertPrimaryCreator, insertStageCreator }
+module.exports = { findPrimaryCreator, findStageCreator, insertPrimaryCreator, insertStageCreator }
