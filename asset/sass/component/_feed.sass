@@ -1,0 +1,37 @@
+.feed
+	@extend .py-5
+
+	.feed-row
+		@extend .row, .justify-content-center
+
+		.feed-col
+			@extend .col-12, .col-md-10, .col-xl-8
+
+			.feed-type-heading
+				@extend .m-0, .py-2
+
+				color: $primary
+				font-size: 0.8rem
+				font-weight: 700
+				text-transform: uppercase
+				text-align: center
+
+			.feed-title
+				@extend .m-0
+
+				color: $black
+				font-size: 1.75rem
+				font-weight: 600
+				text-align: center
+
+			.feed-description
+				@extend .text-muted, .m-0, .pt-2, .pb-4
+
+				font-weight: 400
+				text-align: center
+
+		.feed-pagination-col
+			@extend .col-10, .col-xl-8, .py-4, .d-flex, .align-items-center, .justify-content-center
+
+			.feed-pagination
+				@extend .btn, .btn-sm, .btn-primary, .w-50

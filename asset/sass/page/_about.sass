@@ -1,0 +1,38 @@
+.about
+	@extend .py-5
+
+	.about-row
+		@extend .row, .align-items-center, .justify-content-around
+
+		.about-col
+			@extend .col-12, .col-md-6, .col-xxl-5
+
+			.illustration
+				@extend .d-none, .d-md-inline
+
+				width: 100%
+
+			.about-heading
+				@extend .m-0, .p-2
+
+				color: $primary
+				font-size: 1.5rem
+				font-weight: 600
+				text-transform: uppercase
+
+			.about-text
+				@extend .m-0, .p-2
+
+				font-size: 0.95rem
+
+			.about-contact-link
+				@extend .m-0, .p-2
+
+				color: $primary
+				font-size: 0.9rem
+				font-weight: 600
+				text-decoration: none
+				text-transform: uppercase
+
+				&:active, &:hover
+					text-decoration: underline

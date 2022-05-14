@@ -1,19 +1,30 @@
 const router = require('express').Router();
+const { render } = require('../../utility/mustache.utility');
+const { createFeed } = require('../../service/content/feed.service');
 
 router.get('/', (request, response) => {
-	// TODO: response: home page
+	response.status(200).send(render('src/route/site/view/index.html', {
+		userProfileContent: response.locals.userProfileContent,
+		recentFeed: createFeed('recent', null, 'A glance at the most recent content published to PodScholar.')
+	}));
 });
 
 router.get('/faq', (request, response) => {
-	// TODO: response: pricing and faq page
+	response.status(200).send(render('src/route/site/view/faq.html', {
+		userProfileContent: response.locals.userProfileContent
+	}));
 });
 
 router.get('/about', (request, response) => {
-	// TODO: response: about page
+	response.status(200).send(render('src/route/site/view/about.html', {
+		userProfileContent: response.locals.userProfileContent
+	}));
 });
 
 router.get('/contact', (request, response) => {
-	// TODO: response: contact page
+	response.status(200).send(render('src/route/site/view/contact.html', {
+		userProfileContent: response.locals.userProfileContent
+	}));
 });
 
 module.exports = router;

@@ -10,6 +10,16 @@ const cookieParser = require('cookie-parser')
 const app = express();
 
 app.use(express.json())
+app.use('/asset', express.static('asset'));
+app.set('view engine', 'mustache');
+
+app.use((request, response, next) => {
+	response.locals.userProfileContent = (response.locals.authenticated === true) ?
+		'<a class="nav-link" href="/register">Account</a>' :
+		`<a class="nav-link" href="/register">Register<i class="bi bi-arrow-right ms-2"></i></a>`;
+
+	next();
+});
 
 app.use(router);
 app.use(cookieParser());

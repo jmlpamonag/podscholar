@@ -1,0 +1,46 @@
+footer
+	background-color: $white
+
+	.footer-navigation-row
+		@extend .row, .justify-content-center, .pt-4, .pb-5
+
+		.footer-navigation-col
+			@extend .col-12, .col-sm-4, .col-md-3, .col-lg-2, .text-center
+
+			.footer-navigation-item
+				@extend .small
+
+				color: rgba($primary, 0.75)
+				font-weight: 550
+				text-decoration: none
+
+				&:active, &:hover
+					color: $primary !important
+
+	.footer-social-row
+		@extend .row, .justify-content-center, .align-items-center
+
+		.footer-social-col
+			@extend .col-2, .col-md-1, .text-center
+
+			.footer-social-item
+				color: rgba($primary, 0.75)
+				font-size: 1.25rem
+
+				&:active, &:hover
+					color: $primary
+
+		.footer-brand-col
+			@extend .col-4, .col-md-2, .text-center
+
+			.footer-brand-image
+				height: 3.75rem
+
+	.footer-copyright-row
+		@extend .row, .justify-content-center, .pt-5, .pb-4
+
+		.footer-copyright-col
+			@extend .col-12, .text-center
+
+			.footer-copyright
+				@extend .m-0, .small, .text-muted

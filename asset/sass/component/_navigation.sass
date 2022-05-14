@@ -1,0 +1,91 @@
+.navbar
+	@extend .px-sm-3, .px-lg-5
+
+	$end-component-width: 7.5rem
+
+	background-color: $white
+
+	.navbar-brand-container
+		width: $end-component-width
+
+		.navbar-brand-image
+			height: $end-component-width * 0.5
+
+	.navbar-nav
+		@extend .mx-auto
+
+	.nav-item
+		@extend .px-1, .px-md-2
+
+	.nav-link
+		@extend .small
+
+		color: rgba($primary, 0.75)
+		font-weight: 550
+
+		&.active, &:active, &:focus, &:hover
+			color: $primary
+
+	.navbar-user-profile-container
+		@extend .d-flex, .justify-content-end
+
+		width: $end-component-width
+
+		.navbar-user-profile-avatar
+			@extend .rounded
+
+			height: 3.25rem
+			object-fit: cover
+			width: 3.25rem
+
+		.navbar-user-profile-dropdown
+			@extend .p-2
+
+			min-width: 17.5rem
+
+			.navbar-user-profile-dropdown-row
+				@extend .row, .align-items-center
+
+				.navbar-user-profile-dropdown-avatar-container
+					@extend .col-3
+
+					.navbar-user-profile-dropdown-avatar
+						@extend .rounded
+
+						height: 3.25rem
+						object-fit: cover
+						width: 3.25rem
+
+				.navbar-user-profile-dropdown-username-container
+					@extend .col-9
+
+					.navbar-user-profile-dropdown-username-stack
+						@extend .vstack, .gap-0
+
+						.navbar-user-profile-dropdown-name
+							@extend .m-0, .p-0
+
+							font-size: 0.9rem
+
+						.navbar-user-profile-dropdown-username
+							@extend .stretched-link, .small, .text-muted, .m-0, .p-0
+
+							text-decoration: none
+
+							&:active, &:hover
+								text-decoration: underline
+
+				.navbar-user-profile-item-container
+					@extend .col-12
+
+					.navbar-user-profile-item
+						@extend .dropdown-item, .rounded
+
+	.navbar-toggler
+		border-color: $primary
+
+		&:active, &:hover
+			box-shadow: none
+
+		.navbar-toggler-icon
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(19, 57, 96, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
