@@ -303,7 +303,7 @@ router.patch('/api/auth/recover', async (request, response) => {
 	let tokenExists = await findAccessTokenByToken(request.body.token)
 
 	if (tokenExists != null) {
-		jwt.verify(recoveryToken, process.env.ACCESS_TOKEN_SECRET, (error, user) => {
+		jwt.verify(recoveryToken, process.env.ACCESS_TOKEN_SECRET, async (error, user) => {
 			if (error) return console.log(error)
 			
 			let newPassword = toHash(request.body.password)
