@@ -10,4 +10,12 @@ function toHash(password) {
     return hashedPassword;
 }
 
-module.exports = {toHash}
+function generateAccessToken(user) {
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: parseInt(process.env.JWT_TIMEOUT) })
+}
+
+function generateValidationToken(user) {
+    return jwt.sign(user, process.env.VALIDATON_TOKEN_SECRET, { expiresIn: parseInt(process.env.JWT_TIMEOUT) })
+}
+
+module.exports = {toHash, generateValidationToken, generateAccessToken}

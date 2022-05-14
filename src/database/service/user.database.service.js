@@ -40,4 +40,113 @@ async function insertStageUser(user) {
 	}
 }
 
-module.exports = { findUserById, findUserByUsername, insertPrimaryUser, insertStageUser };
+async function deleteStageUser(user) {
+	const result = await stage(configuration.stageUserCollection).deleteOne(user)
+
+    if (result.deletedCount > 0) {
+        console.log('A validation token document was deleted');
+
+        return result.deletedCount;
+
+    } else {
+        console.log('No document was deleted');
+
+        return null;
+    }
+}
+
+async function deleteStageCreator(creator) {
+	const result = await stage(configuration.stageUserCollection).deleteOne(creator)
+
+    if (result.deletedCount > 0) {
+        console.log('A validation token document was deleted');
+
+        return result.deletedCount;
+
+    } else {
+        console.log('No document was deleted');
+
+        return null;
+    }
+}
+
+async function findStageUserById(id) {
+	return await stage(configuration.stageUserCollection).findOne({ _id: new ObjectId(id) });
+}
+
+async function findPrimaryUserById(id) {
+	return await primary(configuration.primaryUserCollection).findOne({ _id: new ObjectId(id) });
+}
+
+async function updatePrimaryUserStatus(id){
+	const result = await primary(configuration.primaryUserCollection).updateOne({ _id: new ObjectId(id) }, { $set: {'account.status': 'validated'}});
+
+	if (result.modifiedCount > 0) {
+        console.log('A user document was updated');
+
+        return result.modifiedCount;
+
+    } else {
+        console.log('No modified document');
+
+        return null;
+    }
+}
+
+async function findUserByEmail(email){
+	var result; 
+
+	result = await primary(configuration.primaryUserCollection).findOne({'profile.email': email });
+
+	if (result != null) {
+		return result;
+	} else {
+		result = await stage(configuration.stageUserCollection).findOne({'profile.email': email })
+		
+		if(result != null) {
+			return result;
+		} else {
+			return null;
+		}
+	} 
+}
+
+async function updatePassword(id,password) {
+	var user;
+
+	user = await findPrimaryUserById(id);
+	if (user != null) {
+		const result = await primary(configuration.primaryUserCollection).updateOne({ _id: new ObjectId(id) }, { $set: {'account.password': password}});
+
+		if (result.modifiedCount > 0) {
+			console.log('A primary user document was updated');
+			return result.modifiedCount;
+	
+		} else {
+			console.log('No modified document');
+			return null;
+		}
+		
+	} else {
+		user = await findStageUserById(id);
+		if(user != null){
+			const res = await stage(configuration.stageUserCollection).updateOne({ _id: new ObjectId(id) }, { $set: {'account.password': password}});
+
+			if (res.modifiedCount > 0) {
+				console.log('A stage user document was updated');
+				return res.modifiedCount;
+		
+			} else {
+				console.log('No modified document');
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	
+}
+
+
+module.exports = { findUserById, findUserByUsername, insertPrimaryUser, insertStageUser, deleteStageUser, findStageUserById, findPrimaryUserById, updatePrimaryUserStatus, deleteStageCreator, findUserByEmail, updatePassword};
