@@ -5,6 +5,10 @@ async function findCategory(name) {
 	return await primary(configuration.primaryCategoryCollection).findOne({name: name});
 }
 
+async function findSubcategory(name) {
+	return await primary(configuration.primaryCategoryCollection).findOne({'children.name': name});
+}
+
 function insertCategory(document) {
 	primary(configuration.primaryCategoryCollection).insertOne(document, (error) => {
 		if (error) return console.log(error);
@@ -17,4 +21,4 @@ function insertCategories(documents) {
 	});
 }
 
-module.exports = { findCategory, insertCategory, insertCategories };
+module.exports = { findCategory, findSubcategory, insertCategory, insertCategories };

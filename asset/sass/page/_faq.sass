@@ -1,0 +1,59 @@
+.faq
+	.pricing .card
+		border: none
+		border-radius: 1rem
+		transition: all 0.2s
+		box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1)
+
+		@media screen and (min-width: 992px)
+			&:hover
+				margin-top: -.25rem
+				margin-bottom: .25rem
+				box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3)
+
+			&:hover .btn
+				opacity: 1
+
+	.pricing h1, .faq h1
+		font-weight: 700
+
+	.pricing hr, .faq hr
+		margin: 1.5rem
+		border: 0
+		border-top: 3px double $secondary
+
+	.pricing .card-title
+		margin: 0.5rem 0
+		font-size: 0.9rem
+		letter-spacing: .1rem
+		font-weight: bold
+
+	.pricing .card-price
+		font-size: 3rem
+		margin: 0
+
+	.pricing .card-price .period
+		font-size: 0.8rem
+
+	.pricing i
+		padding-right: 10px !important
+		color: $secondary
+
+	.pricing ul
+		list-style: none
+
+	.pricing ul li
+		margin-bottom: 1rem
+
+	.pricing .text-muted, .faq .text-muted, .tos .text-muted, .privacy .text-muted
+		opacity: 0.7
+
+	.pricing .btn
+		font-size: 80%
+		letter-spacing: .1rem
+		font-weight: bold
+		opacity: 0.7
+		transition: all 0.2s
+
+	.faq-container
+		text-align: center

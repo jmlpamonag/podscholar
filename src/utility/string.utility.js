@@ -1,4 +1,16 @@
 /**
+ * Format a string of text to hyphenate spaces, set all characters to lowercase, and trim trailing whitespace, e.g.,
+ * '  Hello World!   ' would become 'hello-world'.
+ *
+ * @param value		the string of text to format.
+ *
+ * @returns {string}	the formatted string.
+ */
+function formatHyphenateLowercaseTrim(value) {
+	return value.trimStart().trimEnd().toLowerCase().replaceAll(' ', '-');
+}
+
+/**
  * Convert a UTF8 string to a 24-character hexadecimal string to generate a database document ObjectId.
  *
  * Note: post-conversion, to match the 24-character limit of an ObjectId hexadecimal input value, the hexadecimal return
@@ -23,4 +35,4 @@ function toHexadecimal(value) {
 	return result.substring(0, 24);
 }
 
-module.exports = { toHexadecimal };
+module.exports = { formatHyphenateLowercaseTrim, toHexadecimal };
